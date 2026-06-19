@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://12put.github.io/tiyu-le-yu-com-cn/sitemap.xml
