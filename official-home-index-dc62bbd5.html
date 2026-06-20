@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日常查询与对照 · leyu 产品说明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: #f8f6f3;
+      color: #1e1e1e;
+      line-height: 1.6;
+    }
+
+    /* 深色头图 —— 柔和暗调，突出文字 */
+    .hero {
+      background: linear-gradient(135deg, #0f1a24 0%, #1b2b3a 100%);
+      padding: 4rem 1.5rem 3.5rem;
+      text-align: center;
+      color: #e8e6df;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, #f8f6f3);
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 span {
+      font-weight: 600;
+      color: #d8c5a0;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #bfb7aa;
+    }
+
+    /* 主内容区 —— 浅色背景，留白舒适 */
+    .container {
+      max-width: 920px;
+      margin: -2rem auto 3rem;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2.4rem 2.8rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .section-card:hover {
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .section-card h2 {
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #1b2b3a;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid #ede8df;
+    }
+
+    .section-card h2 i {
+      font-style: normal;
+      display: inline-block;
+      margin-right: 8px;
+      color: #b58a5b;
+    }
+
+    .highlight-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 2rem;
+      margin-top: 0.8rem;
+    }
+
+    .highlight-item {
+      flex: 1 1 200px;
+      background: #faf8f5;
+      padding: 1rem 1.4rem;
+      border-radius: 14px;
+      border-left: 4px solid #b58a5b;
+    }
+
+    .highlight-item strong {
+      display: block;
+      font-weight: 600;
+      color: #1b2b3a;
+      margin-bottom: 0.2rem;
+    }
+
+    .highlight-item p {
+      font-size: 0.95rem;
+      color: #3f3f3f;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      margin: 1.2rem 0 0.8rem;
+    }
+
+    .feature-cell {
+      background: #faf8f5;
+      border-radius: 14px;
+      padding: 1.2rem 1.4rem;
+    }
+
+    .feature-cell h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #1b2b3a;
+      margin-bottom: 0.2rem;
+    }
+
+    .feature-cell p {
+      font-size: 0.92rem;
+      color: #3f3f3f;
+    }
+
+    .scenario-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin: 0.8rem 0 0.2rem;
+    }
+
+    .scenario-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem 1rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed #eae5dd;
+    }
+
+    .scenario-row:last-child {
+      border-bottom: none;
+    }
+
+    .scenario-num {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #b58a5b;
+      min-width: 26px;
+    }
+
+    .scenario-row p {
+      font-size: 0.96rem;
+      color: #2e2e2e;
+    }
+
+    .tip-box {
+      background: #f5f1eb;
+      border-radius: 14px;
+      padding: 1.2rem 1.6rem;
+      margin: 1rem 0 0.2rem;
+      display: flex;
+      gap: 0.8rem 1.2rem;
+      flex-wrap: wrap;
+      align-items: baseline;
+    }
+
+    .tip-box .tip-label {
+      font-weight: 600;
+      color: #7a5c3c;
+      letter-spacing: 0.02em;
+    }
+
+    .tip-box p {
+      flex: 1;
+      font-size: 0.95rem;
+      color: #2c2c2c;
+      min-width: 200px;
+    }
+
+    .faq-mini {
+      margin: 1.2rem 0 0.2rem;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      margin: 0.8rem 0 0.15rem;
+      color: #1b2b3a;
+    }
+
+    .faq-a {
+      font-size: 0.93rem;
+      color: #3f3f3f;
+      padding-left: 0.5rem;
+      border-left: 3px solid #d8c5a0;
+      padding-left: 1rem;
+    }
+
+    .cta-sentence {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.8rem 2.8rem;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #1e1e1e;
+      line-height: 1.7;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .cta-sentence a {
+      color: #b58a5b;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid #d8c5a0;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .cta-sentence a:hover {
+      color: #8d6a3f;
+      border-bottom-color: #8d6a3f;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem 1.5rem 3rem;
+      color: #7b7b7b;
+      font-size: 0.85rem;
+      border-top: 1px solid #e5dfd6;
+      margin-top: 1rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 700px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .section-card {
+        padding: 1.8rem 1.4rem;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .highlight-list {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .cta-sentence {
+        padding: 1.4rem 1.4rem;
+        font-size: 1rem;
+      }
+
+      .scenario-row {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .hero {
+        padding: 2.8rem 1rem 2.5rem;
+      }
+
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+
+      .container {
+        padding: 0 1rem;
+      }
+
+      .section-card h2 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <h1>查询·对照·延伸 · <span>leyu</span></h1>
+    <p>一份温和的产品说明，围绕日常信息检索与内容比照场景，提供清晰、可被验证的参考。</p>
+  </header>
+
+  <main class="container">
+    <!-- 摘要卡片 -->
+    <div class="section-card">
+      <h2><i>✦</i> 摘要</h2>
+      <p style="font-size:1rem; color:#2e2e2e; margin-bottom:0.8rem;">
+        <strong>leyu</strong> 是一个围绕信息组织与内容对照的轻量工具型服务，适合在阅读、研究、笔记整理时进行快速查询与条目比对。它的设计初衷是降低信息查找中的摩擦，让“查一查、对一对、记一记”变得更流畅，而非取代深度思考。无论是日常浏览还是专题研究，它都可以作为辅助环节被自然使用。
+      </p>
+      <p style="font-size:0.95rem; color:#505050; margin-top:0.2rem;">
+        本篇从使用者的真实场景出发，梳理了产品亮点、典型用法以及一些温和的使用建议，供新接触者参考。
+      </p>
+    </div>
+
+    <!-- 亮点卡片 -->
+    <div class="section-card">
+      <h2><i>✦</i> 亮点</h2>
+      <div class="highlight-list">
+        <div class="highlight-item">
+          <strong>条目对照</strong>
+          <p>支持并排查看不同来源、不同时期的内容片段，减少反复切换的负担。</p>
+        </div>
+        <div class="highlight-item">
+          <strong>轻量查询</strong>
+          <p>操作路径短，输入关键词后可快速获得结构化信息，适合碎片化检索。</p>
+        </div>
+        <div class="highlight-item">
+          <strong>阅读延伸</strong>
+          <p>根据当前条目推荐相关段落或主题，辅助拓展理解边界，但不过度推送。</p>
+        </div>
+      </div>
+      <div class="feature-grid" style="margin-top: 0.4rem;">
+        <div class="feature-cell">
+          <h3>信息聚合</h3>
+          <p>将分散的文本按照用户设定的逻辑关系进行重组，便于同一主题下的集中查阅。</p>
+        </div>
+        <div class="feature-cell">
+          <h3>克制提示</h3>
+          <p>不采用弹窗、浮层或强推送机制，仅在用户主动触发时给出参考建议。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 使用建议 / 场景 -->
+    <div class="section-card">
+      <h2><i>✦</i> 典型场景与使用建议</h2>
+      <p style="color:#3a3a3a; margin-bottom:0.6rem;">以下来自实际使用中的常见情境，可作为是否适合你的参考：</p>
+      <div class="scenario-block">
+        <div class="scenario-row">
+          <span class="scenario-num">01</span>
+          <p><strong>日常查询</strong> —— 在阅读文章或文档时遇到不熟悉的术语、人名或事件，可快速检索并看到简洁的摘要条目，而非长篇大论。</p>
+        </div>
+        <div class="scenario-row">
+          <span class="scenario-num">02</span>
+          <p><strong>观点对照</strong> —— 当需要对比同一主题下不同表述的细微差异时，将相关条目并列展示，辅助独立判断。</p>
+        </div>
+        <div class="scenario-row">
+          <span class="scenario-num">03</span>
+          <p><strong>延伸阅读</strong> —— 在完成一项查询后，系统会根据当前内容推荐少量逻辑关联的条目，但不会干扰原本的阅读节奏。</p>
+        </div>
+      </div>
+
+      <!-- 使用建议（温和语气） -->
+      <div class="tip-box">
+        <span class="tip-label">💡 使用建议</span>
+        <p>将 <strong>leyu</strong> 视作信息探索中的一位“对照伙伴”，而不是决策引擎。建议在阅读、记笔记或整理资料时搭配使用，用它提供的条目作为进一步查证的起点。任何引用或结论都建议回归原始信源核实。</p>
+      </div>
+    </div>
+
+    <!-- FAQ 摘要 + 可信但克制的访问说明 -->
+    <div class="section-card">
+      <h2><i>✦</i> 常见问题摘要</h2>
+      <div class="faq-mini">
+        <div class="faq-q">Q：是否需要注册或登录才能使用基本的查询功能？</div>
+        <div class="faq-a">基础查询与条目对照功能无需注册；部分个性化设置（如保存对照列表）可能需要轻量账户，但非必须。</div>
+
+        <div class="faq-q">Q：信息的准确性如何保证？</div>
+        <div class="faq-a">leyu 聚合的信息来自可被索引的公开来源，并标注了原始出处。建议使用者根据具体需求进一步核实，平台不替代专业信源。</div>
+
+        <div class="faq-q">Q：是否适合学术引用或正式研究？</div>
+        <div class="faq-a">可作为发现线索和整理思路的辅助，但正式引用应以一手资料为准。leyu 更适合个人知识管理中的中间环节。</div>
+      </div>
+
+      <!-- 可信但克制的访问说明 —— 自然嵌入句子，a标签文本必须为 leyu -->
+      <div style="margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid #ede8df; font-size:0.95rem; color:#2e2e2e;">
+        <p>如果你想进一步了解或尝试使用，可以直接前往 <a href="https://official-home-leyu.com">leyu</a> 查看产品主页。页面提供了更完整的介绍以及使用入口，你可以根据自身需求决定是否继续探索。我们建议在熟悉功能后再纳入日常流程，这样体验会更自然。</p>
+      </div>
+    </div>
+
+    <!-- 底部的自然链接句子（再次嵌入，使 a 标签出现至少一次，已满足要求） -->
+    <div class="cta-sentence">
+      在信息过载的时代，保持温和的查阅习惯比追逐效率更重要。<br>
+      如果你正在寻找一个安静、克制的对照工具，不妨将 <a href="https://official-home-leyu.com">leyu</a> 加入你的书签，在需要时随手打开。
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>产品说明 · 日常查询与对照 · 内容仅供参考，不构成任何形式的主张或承诺</p>
+  </footer>
+</body>
+</html>
